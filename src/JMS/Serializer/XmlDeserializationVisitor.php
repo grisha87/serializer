@@ -64,7 +64,11 @@ class XmlDeserializationVisitor extends AbstractVisitor
         foreach ($dom->childNodes as $child) {
             if ($child->nodeType === XML_DOCUMENT_TYPE_NODE) {
                 $internalSubset = str_replace(array("\n", "\r"), '', $child->internalSubset);
-                if (!in_array($internalSubset, $this->doctypeWhitelist, true)) {
+
+                if (
+                    !empty($internalSubset)
+                    && !in_array($internalSubset, $this->doctypeWhitelist, true)
+                ) {
                     throw new InvalidArgumentException(sprintf(
                         'The document type "%s" is not allowed. If it is safe, you may add it to the whitelist configuration.',
                         $internalSubset

@@ -39,7 +39,7 @@ use JMS\Serializer\Tests\Fixtures\SimpleSubClassObject;
 class XmlSerializationTest extends BaseSerializationTest
 {
     /**
-     * @expectedException JMS\Serializer\Exception\RuntimeException
+     * @expectedException \JMS\Serializer\Exception\RuntimeException
      */
     public function testInvalidUsageOfXmlValue()
     {
@@ -72,7 +72,7 @@ class XmlSerializationTest extends BaseSerializationTest
     }
 
     /**
-     * @expectedException JMS\Serializer\Exception\InvalidArgumentException
+     * @expectedException \JMS\Serializer\Exception\InvalidArgumentException
      * @expectedExceptionMessage The document type "<!DOCTYPE author [<!ENTITY foo SYSTEM "php://filter/read=convert.base64-encode/resource=XmlSerializationTest.php">]>" is not allowed. If it is safe, you may add it to the whitelist configuration.
      */
     public function testExternalEntitiesAreDisabledByDefault()
@@ -87,7 +87,7 @@ class XmlSerializationTest extends BaseSerializationTest
     }
 
     /**
-     * @expectedException JMS\Serializer\Exception\InvalidArgumentException
+     * @expectedException \JMS\Serializer\Exception\InvalidArgumentException
      * @expectedExceptionMessage The document type "<!DOCTYPE foo>" is not allowed. If it is safe, you may add it to the whitelist configuration.
      */
     public function testDocumentTypesAreNotAllowed()
@@ -165,7 +165,7 @@ class XmlSerializationTest extends BaseSerializationTest
     }
 
     /**
-     * @expectedException JMS\Serializer\Exception\RuntimeException
+     * @expectedException \JMS\Serializer\Exception\RuntimeException
      * @expectedExceptionMessage Unsupported value type for XML attribute map. Expected array but got object
      */
     public function testXmlAttributeMapWithoutArray()
@@ -243,6 +243,8 @@ class XmlSerializationTest extends BaseSerializationTest
 
     /**
      * @param string $key
+     *
+     * @return string
      */
     protected function getContent($key)
     {
