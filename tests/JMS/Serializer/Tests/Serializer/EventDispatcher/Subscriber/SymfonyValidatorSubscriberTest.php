@@ -53,7 +53,7 @@ class SymfonyValidatorSubscriberTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException JMS\Serializer\Exception\ValidationFailedException
+     * @expectedException \JMS\Serializer\Exception\ValidationFailedException
      * @expectedExceptionMessage Validation failed with 1 error(s).
      */
     public function testValidateThrowsExceptionWhenListIsNotEmpty()
@@ -63,7 +63,7 @@ class SymfonyValidatorSubscriberTest extends \PHPUnit_Framework_TestCase
         $this->validator->expects($this->once())
             ->method('validate')
             ->with($obj, array('foo'))
-            ->will($this->returnValue(new ConstraintViolationList(array(new ConstraintViolation('foo', array(), 'a', 'b', 'c')))));
+            ->will($this->returnValue(new ConstraintViolationList(array(new ConstraintViolation('foo', 'template', array(), 'a', 'b', 'c')))));
 
         $context = DeserializationContext::create()->setAttribute('validation_groups', array('foo'));
 

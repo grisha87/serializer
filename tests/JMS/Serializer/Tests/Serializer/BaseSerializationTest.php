@@ -611,7 +611,7 @@ abstract class BaseSerializationTest extends \PHPUnit_Framework_TestCase
 
     public function testConstraintViolation()
     {
-        $violation = new ConstraintViolation('Message of violation', array(), null, 'foo', null);
+        $violation = new ConstraintViolation('Message of violation', 'template', array(), null, 'foo', null);
 
         $this->assertEquals($this->getContent('constraint_violation'), $this->serialize($violation));
     }
@@ -619,8 +619,8 @@ abstract class BaseSerializationTest extends \PHPUnit_Framework_TestCase
     public function testConstraintViolationList()
     {
         $violations = new ConstraintViolationList();
-        $violations->add(new ConstraintViolation('Message of violation', array(), null, 'foo', null));
-        $violations->add(new ConstraintViolation('Message of another violation', array(), null, 'bar', null));
+        $violations->add(new ConstraintViolation('Message of violation', 'template', array(), null, 'foo', null));
+        $violations->add(new ConstraintViolation('Message of another violation', 'template', array(), null, 'bar', null));
 
         $this->assertEquals($this->getContent('constraint_violation_list'), $this->serialize($violations));
     }
@@ -704,7 +704,7 @@ abstract class BaseSerializationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException JMS\Serializer\Exception\InvalidArgumentException
+     * @expectedException \JMS\Serializer\Exception\InvalidArgumentException
      * @expectedExceptionMessage Invalid group name "foo, bar" on "JMS\Serializer\Tests\Fixtures\InvalidGroupsObject->foo", did you mean to create multiple groups?
      */
     public function testInvalidGroupName()

@@ -18,13 +18,12 @@
 
 namespace JMS\Serializer\Tests\Fixtures;
 
+use Closure;
 use Doctrine\ORM\Proxy\Proxy;
 
 class SimpleObjectProxy extends SimpleObject implements Proxy
 {
     public $__isInitialized__ = false;
-
-    private $baz = 'baz';
 
     public function __load()
     {
@@ -37,5 +36,80 @@ class SimpleObjectProxy extends SimpleObject implements Proxy
     public function __isInitialized()
     {
         return $this->__isInitialized__;
+    }
+
+    /**
+     * Marks the proxy as initialized or not.
+     *
+     * @param boolean $initialized
+     *
+     * @return void
+     */
+    public function __setInitialized($initialized)
+    {
+        throw new \LogicException("Missing implementation");
+    }
+
+    /**
+     * Sets the initializer callback to be used when initializing the proxy. That
+     * initializer should accept 3 parameters: $proxy, $method and $params. Those
+     * are respectively the proxy object that is being initialized, the method name
+     * that triggered initialization and the parameters passed to that method.
+     *
+     * @param Closure|null $initializer
+     *
+     * @return void
+     */
+    public function __setInitializer(Closure $initializer = null)
+    {
+        throw new \LogicException("Missing implementation");
+    }
+
+    /**
+     * Retrieves the initializer callback used to initialize the proxy.
+     *
+     * @see __setInitializer
+     *
+     * @return Closure|null
+     */
+    public function __getInitializer()
+    {
+        throw new \LogicException("Missing implementation");
+    }
+
+    /**
+     * Sets the callback to be used when cloning the proxy. That initializer should accept
+     * a single parameter, which is the cloned proxy instance itself.
+     *
+     * @param Closure|null $cloner
+     *
+     * @return void
+     */
+    public function __setCloner(Closure $cloner = null)
+    {
+        throw new \LogicException("Missing implementation");
+    }
+
+    /**
+     * Retrieves the callback to be used when cloning the proxy.
+     *
+     * @see __setCloner
+     *
+     * @return Closure|null
+     */
+    public function __getCloner()
+    {
+        throw new \LogicException("Missing implementation");
+    }
+
+    /**
+     * Retrieves the list of lazy loaded properties for a given proxy
+     *
+     * @return array Keys are the property names, and values are the default values
+     *               for those properties.
+     */
+    public function __getLazyProperties()
+    {
+        throw new \LogicException("Missing implementation");
     }
 }
